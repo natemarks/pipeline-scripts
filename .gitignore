@@ -1,0 +1,7 @@
+.vscode
+.idea
+bin
+build
+.venv
+.pytest_cache
+*.zip
