@@ -21,7 +21,7 @@ clean-venv:
 git_pull_ff_only: ## if there is a merge required, ail out
 	git pull --ff-only
 
-bump:  clean-venv git_pull_ff_only ## bump version in main branch
+bump:  static clean-venv git_pull_ff_only ## bump version in main branch
 
 ifeq ($(CURRENT_BRANCH), $(MAIN_BRANCH))
 	( \

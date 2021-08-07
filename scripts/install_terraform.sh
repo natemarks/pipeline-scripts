@@ -11,6 +11,7 @@ usage() {
 Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] -r release_version -d directory
 
 Downloads and extracts the go tarball to the [directory/version].  Echoes the PATH update export command
+Running the script with no options will install the default version to build/terraform/[DEFAULT VERSION]/
 Available options:
 
 -h, --help        Print this help and exit
