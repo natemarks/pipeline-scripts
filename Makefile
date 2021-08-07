@@ -19,7 +19,7 @@ clean-venv:
     )
 
 git_pull_ff_only: ## if there is a merge required, ail out
-	git pull --ff-only
+	git pull --ff-only origin main
 
 bump:  static clean-venv git_pull_ff_only ## bump version in main branch
 
