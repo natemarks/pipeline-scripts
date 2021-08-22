@@ -1,8 +1,9 @@
 This project is intended to be a public location for some common pipeline automation. The scripts are generally derived from this common template: [_template.sh](https://gist.github.com/natemarks/aebb7e84010d4bc37270d554106cb38b) The scripts execute configuration steps run inside a pipeline.  They allow pipeline steps to setup and run various versions of the downloaded tools. It also avoids having to maintain the tools in the agent image. Downloads should be placed in locations that persist across jobs.  The agent ${HOME} might be a good location.
 
-You can access specific versions of files like this:
+You can run the script remotely, selecting a specific version like this:
 ```bash
-curl https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.1/Makefile
+VER=v0.0.3 \
+bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/${VER}/scripts/install_terraform.sh" | bash -s --  -d build/terraform -r 1.0.4'
 ```
 
 ## Go  - Don't install it
