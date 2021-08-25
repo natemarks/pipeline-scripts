@@ -32,3 +32,11 @@ function clearCreds() {
   unset AWS_SECRET_ACCESS_KEY
   unset AWS_SESSION_TOKEN
 }
+
+
+#######################################
+# test Function export
+#######################################
+function checkUtility() {
+  echo "utility.sh is exported"
+}
