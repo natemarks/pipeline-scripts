@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -Eeuo pipefail
 
 #######################################
 # use assume role and set the temporary credentials
@@ -21,16 +20,6 @@ function awsCreds() {
   # export AWS_ACCESS_KEY_ID=$(echo "$creds" | jq -r .AccessKeyId)
   # export AWS_SECRET_ACCESS_KEY=$(echo "$creds" | jq -r .SecretAccessKey)
   # export AWS_SESSION_TOKEN=$(echo "$creds "| jq -r .SessionToken)
-}
-
-#######################################
-# Clear the exported credentials
-#######################################
-function clearCreds() {
-  echo "clearing credentials"
-  unset AWS_ACCESS_KEY_ID
-  unset AWS_SECRET_ACCESS_KEY
-  unset AWS_SESSION_TOKEN
 }
 
 
