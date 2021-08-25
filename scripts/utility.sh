@@ -3,7 +3,7 @@
 #######################################
 # use assume role and set the temporary credentials
 #######################################
-function awsCreds() {
+function assumeRole() {
   local ACCOUNT="${1}"
   local ROLE_NAME="${2}"
   local SESSION_NAME="${3}"
@@ -24,8 +24,15 @@ function awsCreds() {
 
 
 #######################################
-# test Function export
+# Sets the AWS credentials from a given secret assuming the JSON keys are AWSAccessKeyID and AWSSecretAccessKey
+# respectively
+# This informal standard is used in the https://github.com/natemarks/easyaws project to store the test user credentials
 #######################################
-function checkUtility() {
-  echo "utility.sh is exported"
+function credsFromSecretManager() {
+  local SECRET_NAME="${1}"
+  creds=$(aws secretsmanager get-secret-value --secret-id "${SECRET_NAME}" --query SecretString --output text)
+  AWS_ACCESS_KEY_ID=$(echo "$creds" | jq -r .AWSAccessKeyID)
+  export AWS_ACCESS_KEY_ID
+  AWS_SECRET_ACCESS_KEY=$(echo "$creds "| jq -r .AWSSecretAccessKey)
+  export AWS_SECRET_ACCESS_KEY
 }
