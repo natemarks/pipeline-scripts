@@ -5,7 +5,10 @@ You can run the script remotely, selecting a specific version like this:
 VER=v0.0.3 \
 bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/${VER}/scripts/install_terraform.sh" | bash -s --  -d build/terraform -r 1.0.4'
 ```
-
+To source the utility scripts for the functions:
+```nashorn js
+source <(curl -s "https://raw.githubusercontent.com/natemarks/pipeline-scripts/${VER}/scripts/utility.sh")
+```
 ## Go  - Don't install it
 The go installation can be a bit complicated.  I prefer to use the go docker image to do go builds in my pipeline.  I ahve a Make target that looks like this and it's run on the agen. It just requires that the docker engine is installed on the agent:
 
