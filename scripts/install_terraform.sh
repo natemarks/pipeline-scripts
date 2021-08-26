@@ -108,4 +108,6 @@ function download() {
   unzip "${2}/${1}/${TARBALL}" -d "${2}/${1}"
 }
 download "${release_version}" "${directory}"
-echo "export PATH=${directory}/${release_version}:$PATH"
+# echo the path to the terraform executable.
+# the calling function can use this output to run the executable or modify the path
+echo "${directory}/${release_version}"

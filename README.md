@@ -6,7 +6,7 @@ VER=v0.0.3 \
 bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/${VER}/scripts/install_terraform.sh" | bash -s --  -d build/terraform -r 1.0.4'
 ```
 To source the utility scripts for the functions:
-```nashorn js
+```bash
 source <(curl -s "https://raw.githubusercontent.com/natemarks/pipeline-scripts/${VER}/scripts/utility.sh")
 ```
 ## Go  - Don't install it
