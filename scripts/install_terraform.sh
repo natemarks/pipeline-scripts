@@ -3,12 +3,9 @@
 set -Eeuo pipefail
 trap cleanup SIGINT SIGTERM ERR EXIT
 
-# shellcheck disable=SC2034
-script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
-
 usage() {
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-v] -r release_version -d directory
+Usage: install_terraform.sh [-h] [-v] -r release_version -d directory
 
 Downloads and extracts the go tarball to the [directory/version].  Echoes the PATH update export command
 Running the script with no options will install the default version to build/terraform/[DEFAULT VERSION]/
