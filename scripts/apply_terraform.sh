@@ -74,6 +74,7 @@ parse_params "$@"
 setup_colors
 
 msg "initial working directory: ${INITIAL_WD}"
-msg "terraform module diretory: ${tf_module}"
+msg "terraform module directory: ${tf_module}"
 msg "terraform executable: $(which terraform)"
+cd "$tf_module"
 terraform init && terraform plan && terraform apply -auto-approve
