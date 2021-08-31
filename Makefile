@@ -1,6 +1,6 @@
 # .PHONY: shellcheck static bump git_pull_ff_only clean-venv help
 .DEFAULT_GOAL := help
-VERSION := 0.0.18
+VERSION := 0.0.19
 COMMIT_HASH := $(shell git rev-parse --short HEAD)
 CURRENT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 MAIN_BRANCH := main
