@@ -80,9 +80,10 @@ function download() {
   fi
 
 }
-
+set +e
 which aws
 status=$?
+set -e
 if (( status != 0 )); then
   download
 fi
