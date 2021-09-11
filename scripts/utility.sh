@@ -36,3 +36,42 @@ function credsFromSecretManager() {
   AWS_SECRET_ACCESS_KEY=$(echo "$creds "| jq -r .AWSSecretAccessKey)
   export AWS_SECRET_ACCESS_KEY
 }
+
+
+#######################################
+# Extract a JSON value from a given key to a text file
+# The functions uses 'r' to convert \n to newline, \t to tab, etc
+# Usage:
+# JSONKeyToFile  my_data.json  \
+# my_data.json.userdata.sh \
+# '.Resources.lc.Properties.UserData."Fn::Base64"'
+
+#######################################
+function JSONKeyToFile() {
+  local JSON_FILE="${1}"
+  local OUTPUT_FILE="${2}"
+  local JSON_KEY="${3}"
+
+  jq -r "$JSON_KEY" "${JSON_FILE}" > "${OUTPUT_FILE}"
+}
+
+
+#######################################
+# Dump the contents of a text file to a JSON value given the target jey
+# FileToJSONValue my_data.json \
+# my_text_file.txt \
+# '.Resources.lc.Properties.UserData."Fn::Base64"'
+
+#######################################
+function FileToJSONValue() {
+  local JSON_FILE="${1}"
+  local JSON_TMP="${JSON_FILE}.tmp.json"
+  local VALUE_FILE="${2}"
+  local JSON_KEY="${3}"
+  declare VALUE
+  VALUE="$(cat "${VALUE_FILE}")"
+
+  jq --arg vv "$VALUE" "$JSON_KEY"' = $vv'  "${JSON_FILE}" > "${JSON_TMP}"
+  cp -f "${JSON_TMP}" "${JSON_FILE}"
+  rm -f "${JSON_TMP}"
+}
