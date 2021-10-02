@@ -95,6 +95,7 @@ if docker_is_installed; then
 else
   rm -rf .venv
   python3 -m venv .venv
+  # shellcheck disable=SC1091
   . .venv/bin/activate
   pip install --upgrade pip setuptools
   pip install  ansible molecule
