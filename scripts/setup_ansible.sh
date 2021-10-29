@@ -83,4 +83,5 @@ if ! is_ubuntu; then
   die "${RED}This script only supports Ubuntu${NOFORMAT}"
 fi
 sudo apt install -y python3 python3-pip git
-sudo pip3 install ansible
+# boto3 and botocore enable the ansible aws features
+sudo pip3 install ansible boto3 botocore

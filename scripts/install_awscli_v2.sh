@@ -5,15 +5,16 @@ trap cleanup SIGINT SIGTERM ERR EXIT
 
 usage() {
   cat <<EOF
-Usage: utility.sh [-h] [-v]
+Usage: install_awscli_.sh [-h] [-v] -r release_version -d directory
 
-Downloads and  and install aws cli v2 for linux in the default location
-https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2-linux.html#cliv2-linux-install
-
+Downloads and extracts the go tarball to the [directory/version].  Echoes the PATH update export command
+Running the script with no options will install the default version to build/terraform/[DEFAULT VERSION]/
 Available options:
 
 -h, --help        Print this help and exit
 -v, --verbose     Print script debug info
+-r, --release_version  terraform version, default: 0.13.7
+-d  --directory   directory to downlaod and extract terraform
 EOF
   exit
 }
@@ -44,12 +45,23 @@ die() {
 }
 
 parse_params() {
+  # default values of variables set from params
+  release_version='0.13.7'
+  directory='build/terraform'
 
   while :; do
     case "${1-}" in
     -h | --help) usage ;;
     -v | --verbose) set -xv ;;
     --no-color) NO_COLOR=1 ;;
+    -r | --release_version) # example named parameter
+      release_version="${2-}"
+      shift
+      ;;
+    -d | --directory) # example named parameter
+      directory="${2-}"
+      shift
+      ;;
     -?*) die "Unknown option: $1" ;;
     *) break ;;
     esac
@@ -62,28 +74,37 @@ parse_params() {
 parse_params "$@"
 setup_colors
 
-function linux_install() {
-  curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-  unzip awscliv2.zip
-  sudo ./aws/install
-}
+# script logic here
 
+msg "${RED}Read parameters:${NOFORMAT}"
+msg "- release_version: ${release_version}"
+msg "- directory: ${directory}"
+
+# download 0.13.7 build/terraform
+#  https://releases.hashicorp.com/terraform/0.13.7/terraform_0.13.7_linux_amd64.zip to
+# build/terraform/0.13.7 and unzip it
+# NOTE
 function download() {
 
   OS=$(uname)
   readonly OS
   if [ "${OS}" == "Darwin" ]; then
-    msg "${RED}Unable to install on Darwin${NOFORMAT}"
-    exit 1
+    TARBALL="terraform_${1}_darwin_amd64.zip"
   else
-    linux_install
+    TARBALL="terraform_${1}_linux_amd64.zip"
   fi
 
+  if [ -d "${2}/${1}" ]; then
+    return 0
+  fi
+  mkdir -p "${2}/${1}"
+
+  curl -L "https://releases.hashicorp.com/terraform/${1}/${TARBALL}" \
+  -o "${2}/${1}/${TARBALL}" \
+  --silent
+  unzip "${2}/${1}/${TARBALL}" -d "${2}/${1}"
 }
-set +e
-which aws
-status=$?
-set -e
-if (( status != 0 )); then
-  download
-fi
+download "${release_version}" "${directory}"
+# echo the path to the terraform executable.
+# the calling function can use this output to run the executable or modify the path
+echo "${directory}/${release_version}"
