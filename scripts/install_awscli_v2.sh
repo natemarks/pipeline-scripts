@@ -7,14 +7,14 @@ usage() {
   cat <<EOF
 Usage: install_awscli_.sh [-h] [-v] -r release_version -d directory
 
-Downloads and extracts the go tarball to the [directory/version].  Echoes the PATH update export command
+Downloads and extracts awscli v2 to the [directory/version].  Echoes the PATH update export command
 Running the script with no options will install the default version to build/terraform/[DEFAULT VERSION]/
 Available options:
 
 -h, --help        Print this help and exit
 -v, --verbose     Print script debug info
 -r, --release_version  terraform version, default: 0.13.7
--d  --directory   directory to downlaod and extract terraform
+-d  --directory   directory to download and extract awscli v2
 EOF
   exit
 }

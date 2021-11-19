@@ -7,7 +7,7 @@ usage() {
   cat <<EOF
 Usage: utility.sh [-h] [-v] -r release_version -d directory
 
-Downloads and extracts the go tarball to the [directory/version].  Echoes the PATH update export command
+Downloads and extracts cache_clone to the [directory/version].  Echoes the PATH update export command
 Running the script with no options will install the default version to build/cache_clone/[DEFAULT VERSION]/
 
 Available options:

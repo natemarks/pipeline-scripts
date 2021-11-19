@@ -5,17 +5,16 @@ trap cleanup SIGINT SIGTERM ERR EXIT
 
 usage() {
   cat <<EOF
-Usage: utility.sh [-h] [-v] -r release_version -d directory
+Usage: install_pgsummary.sh [-h] [-v] -r release_version -d directory
 
-Downloads and extracts terragrunt to the [directory/version].  Echoes the PATH update export command
-Running the script with no options will install the default version to build/terragrunt/[DEFAULT VERSION]/
-
+Downloads and extracts pgsummary (https://github.com/natemarks/pgsummary) to the [directory/version].  Echoes the PATH update export command
+Running the script with no options will install the default version to build/terraform/[DEFAULT VERSION]/
 Available options:
 
 -h, --help        Print this help and exit
 -v, --verbose     Print script debug info
--r, --release_version  terragrunt version, default: 0.31.3
--d  --directory   directory to download and extract terragrunt
+-r, --release_version  terraform version, default: 0.0.3
+-d  --directory   directory to download and extract pgsummary
 EOF
   exit
 }
@@ -47,8 +46,8 @@ die() {
 
 parse_params() {
   # default values of variables set from params
-  release_version='0.31.3'
-  directory='build/terragrunt'
+  release_version='0.13.7'
+  directory='build/terraform'
 
   while :; do
     case "${1-}" in
@@ -82,7 +81,7 @@ msg "- release_version: ${release_version}"
 msg "- directory: ${directory}"
 
 # download 0.13.7 build/terraform
-# https://github.com/gruntwork-io/terragrunt/releases/download/v0.31.3/terragrunt_darwin_amd64
+#  https://releases.hashicorp.com/terraform/0.13.7/terraform_0.13.7_linux_amd64.zip to
 # build/terraform/0.13.7 and unzip it
 # NOTE
 function download() {
@@ -90,20 +89,22 @@ function download() {
   OS=$(uname)
   readonly OS
   if [ "${OS}" == "Darwin" ]; then
-    TARBALL="terragrunt_darwin_amd64"
+    TARBALL="pgsummary_${1}_darwin_amd64.zip"
   else
-    TARBALL="terragrunt_linux_amd64"
+    TARBALL="pgsummary_${1}_linux_amd64.zip"
   fi
 
   if [ -d "${2}/${1}" ]; then
     return 0
   fi
   mkdir -p "${2}/${1}"
-
-  curl -L "https://github.com/gruntwork-io/terragrunt/releases/download/v${1}/${TARBALL}" \
-  -o "${2}/${1}/terragrunt" \
+  # https://github.com/natemarks/pgsummary/releases/download/v0.0.5/pgsummary_0.0.5_darwin_amd64.tar.gz
+  curl -L "https://github.com/natemarks/pgsummary/releases/download/${1}/${TARBALL}" \
+  -o "${2}/${1}/${TARBALL}" \
   --silent
-  chmod 755 "${2}/${1}/terragrunt"
+  tar -xzvf "${2}/${1}/${TARBALL}" ---directory "${2}/${1}"
 }
 download "${release_version}" "${directory}"
-echo "export PATH=${directory}/${release_version}:$PATH"
+# echo the path to the terraform executable.
+# the calling function can use this output to run the executable or modify the path
+echo "${directory}/${release_version}"

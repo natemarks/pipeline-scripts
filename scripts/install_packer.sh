@@ -7,14 +7,14 @@ usage() {
   cat <<EOF
 Usage: install_packer.sh [-h] [-v] -r release_version -d directory
 
-Downloads and extracts the go tarball to the [directory/version].  Echoes the PATH update export command
+Downloads and extracts packer to the [directory/version].  Echoes the PATH update export command
 Running the script with no options will install the default version to build/packer/[DEFAULT VERSION]/
 Available options:
 
 -h, --help        Print this help and exit
 -v, --verbose     Print script debug info
 -r, --release_version  packer version, default: 1.7.6
--d  --directory   directory to downlaod and extract packer
+-d  --directory   directory to download and extract packer
 EOF
   exit
 }
