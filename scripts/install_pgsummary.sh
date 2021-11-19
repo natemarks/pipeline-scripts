@@ -89,9 +89,9 @@ function download() {
   OS=$(uname)
   readonly OS
   if [ "${OS}" == "Darwin" ]; then
-    TARBALL="pgsummary_${1}_darwin_amd64.zip"
+    TARBALL="pgsummary_${1}_darwin_amd64.tar.gz"
   else
-    TARBALL="pgsummary_${1}_linux_amd64.zip"
+    TARBALL="pgsummary_${1}_linux_amd64.tar.gz"
   fi
 
   if [ -d "${2}/${1}" ]; then
