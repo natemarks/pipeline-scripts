@@ -102,7 +102,7 @@ function download() {
   curl -L "https://github.com/natemarks/pgsummary/releases/download/${1}/${TARBALL}" \
   -o "${2}/${1}/${TARBALL}" \
   --silent
-  tar -xzvf "${2}/${1}/${TARBALL}" ---directory "${2}/${1}"
+  tar -xzvf "${2}/${1}/${TARBALL}" -C "${2}/${1}"
 }
 download "${release_version}" "${directory}"
 # echo the path to the terraform executable.
