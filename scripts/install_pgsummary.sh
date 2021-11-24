@@ -13,7 +13,7 @@ Available options:
 
 -h, --help        Print this help and exit
 -v, --verbose     Print script debug info
--r, --release_version  terraform version, default: 0.0.3
+-r, --release_version  terraform version, default: 0.1.0
 -d  --directory   directory to download and extract pgsummary
 EOF
   exit
@@ -46,7 +46,7 @@ die() {
 
 parse_params() {
   # default values of variables set from params
-  release_version='0.13.7'
+  release_version='0.1.0'
   directory='build/terraform'
 
   while :; do
@@ -80,9 +80,9 @@ msg "${RED}Read parameters:${NOFORMAT}"
 msg "- release_version: ${release_version}"
 msg "- directory: ${directory}"
 
-# download 0.13.7 build/terraform
-#  https://releases.hashicorp.com/terraform/0.13.7/terraform_0.13.7_linux_amd64.zip to
-# build/terraform/0.13.7 and unzip it
+# download 0.1.0 build/terraform
+#  https://github.com/natemarks/pgsummary/releases/download/v0.1.0/pgsummary_0.1.0_darwin_amd64.tar.gz to
+# build/terraform/0.1.0 and unzip it
 # NOTE
 function download() {
 
@@ -98,7 +98,6 @@ function download() {
     return 0
   fi
   mkdir -p "${2}/${1}"
-  # https://github.com/natemarks/pgsummary/releases/download/v0.0.5/pgsummary_0.0.5_darwin_amd64.tar.gz
   curl -L "https://github.com/natemarks/pgsummary/releases/download/v${1}/${TARBALL}" \
   -o "${2}/${1}/${TARBALL}" \
   --silent
