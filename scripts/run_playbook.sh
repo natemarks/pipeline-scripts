@@ -80,7 +80,11 @@ setup_colors
 sudo apt install -y curl
 bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.25/scripts/setup_ansible.sh" | sudo bash -s'
 
-ansible-galaxy install -r "${playbook}/requirements.yml" --force
+# run the requirements file if it exists.install will fail on an empty requirements.yml
+if [ -f "${playbook}/${playbook}.yml" ]; then
+    ansible-galaxy install -r "${playbook}/requirements.yml" --force
+fi
+
 if [ -f "${MAKEMINE}" ]; then
     ansible-playbook --extra-vars "@${MAKEMINE}" "${playbook}/${playbook}.yml" -K
 else
