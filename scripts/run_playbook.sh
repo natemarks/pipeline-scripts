@@ -81,7 +81,7 @@ sudo apt install -y curl
 bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.25/scripts/setup_ansible.sh" | sudo bash -s'
 
 # run the requirements file if it exists.install will fail on an empty requirements.yml
-if [ -f "${playbook}/${playbook}.yml" ]; then
+if [ -f "${playbook}/requirements.yml" ]; then
     ansible-galaxy install -r "${playbook}/requirements.yml" --force
 fi
 # some example playbooks use roledir to run the role from the current path
