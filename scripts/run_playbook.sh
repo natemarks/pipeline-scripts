@@ -84,6 +84,10 @@ bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0
 if [ -f "${playbook}/${playbook}.yml" ]; then
     ansible-galaxy install -r "${playbook}/requirements.yml" --force
 fi
+# some example playbooks use roledir to run the role from the current path
+
+ROLE_DIR="$(pwd)"
+export ROLE_DIR
 
 if [ -f "${MAKEMINE}" ]; then
     ansible-playbook --extra-vars "@${MAKEMINE}" "${playbook}/${playbook}.yml" -K
