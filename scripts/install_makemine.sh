@@ -47,7 +47,7 @@ die() {
 parse_params() {
   # default values of variables set from params
   release_version='0.0.7'
-  directory='~/bin/makemine'
+  directory="$HOME/bin/makemine"
 
   while :; do
     case "${1-}" in
