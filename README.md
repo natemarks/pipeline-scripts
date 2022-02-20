@@ -6,10 +6,10 @@ bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0
 ```
 To source the utility scripts for the functions:
 ```bash
-source /dev/stdin <<<"$( curl -s https://raw.githubusercontent.com/natemarks/pipeline-scripts/${PS_VER}/scripts/utility.sh )"
+source /dev/stdin <<<"$( curl -s https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.38/scripts/utility.sh )"
 ```
 ## Go  - Don't install it
-The go installation can be a bit complicated.  I prefer to use the go docker image to do go builds in my pipeline.  I ahve a Make target that looks like this and it's run on the agen. It just requires that the docker engine is installed on the agent:
+The go installation can be a bit complicated.  I prefer to use the go docker image to do go builds in my pipeline.  I have a make target that looks like this and it's run on the agen. It just requires that the docker engine is installed on the agent:
 
 ```makefile
 build:
