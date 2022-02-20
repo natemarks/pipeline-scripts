@@ -2,7 +2,7 @@ This project is intended to be a public location for some common pipeline automa
 
 You can run the script remotely, selecting a specific version like this:
 ```bash
-bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.37/scripts/install_terraform.sh" | bash -s --  -d build/terraform -r 1.0.4'
+bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.38/scripts/install_terraform.sh" | bash -s --  -d build/terraform -r 1.0.4'
 ```
 To source the utility scripts for the functions:
 ```bash
