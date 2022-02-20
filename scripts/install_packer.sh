@@ -13,7 +13,7 @@ Available options:
 
 -h, --help        Print this help and exit
 -v, --verbose     Print script debug info
--r, --release_version  packer version, default: 1.7.6
+-r, --release_version  packer version, default: 1.7.10
 -d  --directory   directory to download and extract packer
 EOF
   exit
@@ -46,8 +46,8 @@ die() {
 
 parse_params() {
   # default values of variables set from params
-  release_version='1.7.6'
-  directory='build/terraform'
+  release_version='1.7.10'
+  directory='build/packer'
 
   while :; do
     case "${1-}" in
