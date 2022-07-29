@@ -78,7 +78,7 @@ parse_params "$@"
 setup_colors
 
 sudo apt install -y curl
-bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.41/scripts/setup_ansible.sh" | sudo bash -s'
+bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.41/scripts/setup_ansible.sh" | bash -s'
 
 # run the requirements file if it exists.install will fail on an empty requirements.yml
 if [ -f "${playbook}/requirements.yml" ]; then
