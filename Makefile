@@ -1,6 +1,6 @@
 # .PHONY: shellcheck static bump git_pull_ff_only clean-venv help
 .DEFAULT_GOAL := help
-VERSION := 0.0.39
+VERSION := 0.0.40
 COMMIT_HASH := $(shell git rev-parse --short HEAD)
 CURRENT_BRANCH := $(shell git rev-parse --abbrev-ref HEAD)
 MAIN_BRANCH := main
@@ -14,7 +14,7 @@ clean-venv:
 	rm -rf .venv
 	python3 -m venv .venv
 	( \
-       source .venv/bin/activate; \
+       . .venv/bin/activate; \
        pip install --upgrade pip setuptools; \
     )
 
@@ -25,7 +25,7 @@ bump:  static clean-venv git_pull_ff_only ## bump version in main branch
 
 ifeq ($(CURRENT_BRANCH), $(MAIN_BRANCH))
 	( \
-	   source .venv/bin/activate; \
+	   . .venv/bin/activate; \
 	   pip install bump2version; \
 	   bump2version $(BUMP_TYPE); \
 	)
