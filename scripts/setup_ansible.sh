@@ -84,4 +84,4 @@ if ! is_ubuntu; then
 fi
 sudo apt install -y python3 python3-pip git
 # boto3 and botocore enable the ansible aws features
-sudo pip3 install ansible boto3 botocore
+pip3 install --user ansible boto3 botocore
