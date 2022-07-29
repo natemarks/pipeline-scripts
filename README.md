@@ -2,11 +2,11 @@ This project is intended to be a public location for some common pipeline automa
 
 You can run the script remotely, selecting a specific version like this:
 ```bash
-bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.42/scripts/install_terraform.sh" | bash -s --  -d build/terraform -r 1.0.4'
+bash -c 'curl "https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.43/scripts/install_terraform.sh" | bash -s --  -d build/terraform -r 1.0.4'
 ```
 To source the utility scripts for the functions:
 ```bash
-source /dev/stdin <<<"$( curl -s https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.42/scripts/utility.sh )"
+source /dev/stdin <<<"$( curl -s https://raw.githubusercontent.com/natemarks/pipeline-scripts/v0.0.43/scripts/utility.sh )"
 ```
 ## Go  - Don't install it
 The go installation can be a bit complicated.  I prefer to use the go docker image to do go builds in my pipeline.  I have a make target that looks like this and it's run on the agen. It just requires that the docker engine is installed on the agent:
