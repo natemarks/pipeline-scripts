@@ -88,7 +88,7 @@ function download() {
     return 0
   fi
   mkdir -p "${2}/${1}"
-  curl -L "https://github.com/natemarks/cloud-nuke-summary/releases/download/v${1}/cloud-nuke-nuke-summary" \
+  curl -L "https://github.com/natemarks/cloud-nuke-summary/releases/download/v${1}/cloud-nuke-summary" \
   -o "${executable}" \
   --silent
   chmod 755 "${executable}"
