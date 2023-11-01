@@ -92,6 +92,7 @@ function download() {
   --silent
   tar -xzvf "${tarball}" -C "${2}/${1}"
   chmod 755 "${executable}"
+  cp "${executable}" "${2}/${1}/aws-nuke"
 }
 download "${release_version}" "${directory}"
 # echo the path to the terraform tarball.
