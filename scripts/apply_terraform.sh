@@ -75,6 +75,6 @@ setup_colors
 
 msg "initial working directory: ${INITIAL_WD}"
 msg "terraform module directory: ${tf_module}"
-msg "terraform executable: $(which terraform)"
+msg "terraform executable: $(command -v terraform)"
 cd "${tf_module}"
 terraform init && terraform plan && terraform apply -auto-approve

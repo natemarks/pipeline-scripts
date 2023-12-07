@@ -78,7 +78,7 @@ setup_colors
 # the apt package manage is installed on the system
 function docker_is_installed() {
   local STATUS
-  which docker > /dev/null 2>&1
+  command -v docker > /dev/null 2>&1
   STATUS=$?
   if (( STATUS == 0 )); then
     true
