@@ -35,7 +35,7 @@ setup_colors() {
 }
 
 msg() {
-  echo >&2 -e "${1-}"
+  echo >&1 -e "${1-}"
 }
 
 die() {
