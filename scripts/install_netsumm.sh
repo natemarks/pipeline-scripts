@@ -87,7 +87,7 @@ function download() {
     return 0
   fi
   mkdir -p "${2}/${1}"
-  curl -L "https://github.com/natemarks/netsumm/releases/download/v0.0.1/netsumm" \
+  curl -L "https://github.com/natemarks/netsumm/releases/download/v${release_version}/netsumm" \
   -o "${executable}" \
   --silent
   chmod 755 "${executable}"
