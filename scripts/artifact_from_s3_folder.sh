@@ -94,8 +94,7 @@ mkdir -p "${working_dir}"
 
 # download s3 contents to a local folder
 aws s3 sync "${source}" "${working_dir}"
-# add a version file to the contents
-echo "${release_id}" >"${working_dir}/version.txt"
+
 # create a checksum file for the contents
 cd "${working_dir}"
 find . -type f -exec sha256sum {} + | sort >"${destination}/${release_id}.txt"
