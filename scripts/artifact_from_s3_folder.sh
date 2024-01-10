@@ -7,7 +7,10 @@ usage() {
   cat <<EOF
 Usage: artifact_from_s3_folder.sh [-h] [-v] [-f] -p param_value arg1 [arg2...]
 
-Script description here.
+Downloads the contents of an s3 folder and creates a a "${release_id}.tar.gz" file and "${release_id}.txt" sha256sum
+file in the destination directory
+
+I recommend making sure that the source folder always contains a version.txt file that can identify the source code
 
 Available options:
 
