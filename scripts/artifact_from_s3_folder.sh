@@ -5,7 +5,7 @@ trap cleanup SIGINT SIGTERM ERR EXIT
 
 usage() {
   cat <<EOF
-Usage: artifact_from_s3_folder.sh [-h] [-v] [-f] -p param_value arg1 [arg2...]
+Usage: artifact_from_s3_folder.sh [-h] [-v] -s source -d destination -r release_id
 
 Downloads the contents of an s3 folder and creates a a "${release_id}.tar.gz" file and "${release_id}.txt" sha256sum
 file in the destination directory
@@ -94,6 +94,9 @@ mkdir -p "${working_dir}"
 
 # download s3 contents to a local folder
 aws s3 sync "${source}" "${working_dir}"
+
+# add a version file to the contents
+echo "${release_id}" >"${working_dir}/version.txt"
 
 # create a checksum file for the contents
 cd "${working_dir}"
