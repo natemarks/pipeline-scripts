@@ -91,14 +91,20 @@ setup_colors
 working_dir="${destination}/${release_id}_temp"
 if [[ -d "${working_dir}" ]]; then rm -rf "${working_dir}"; fi
 mkdir -p "${working_dir}"
+msg "${GREEN}created working directory: ${working_dir}${NOFORMAT}"
 
+msg "${GREEN}downloading contents of ${source} to ${working_dir}${NOFORMAT}"
 # download s3 contents to a local folder
 aws s3 sync "${source}" "${working_dir}"
 
+msg "${GREEN}creating ${working_dir}/version.txt${NOFORMAT}"
 # add a version file to the contents
 echo "${release_id}" >"${working_dir}/version.txt"
 
 # create a checksum file for the contents
+msg "${GREEN}creating checksum file: ${destination}/${release_id}.txt${NOFORMAT}"
 cd "${working_dir}"
 find . -type f -exec sha256sum {} + | sort >"${destination}/${release_id}.txt"
+
+msg "${GREEN}creating tarball: ${destination}/${release_id}.tar.gz${NOFORMAT}"
 tar -czvf "${destination}/${release_id}".tar.gz -C "${working_dir}" .

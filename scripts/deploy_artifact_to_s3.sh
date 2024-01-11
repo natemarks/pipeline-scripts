@@ -127,6 +127,8 @@ checksum_file=$(tarball_to_txt "${tarball_file}")
 
 mkdir -p "${working_dir}/extracted"
 tar -xzvf "${working_dir}/${tarball_file}" -C "${working_dir}/extracted"
+msg "${GREEN}extracted ${working_dir}/${tarball_file} to ${working_dir}/extracted${NOFORMAT}"
+
 
 # verify integrity
 cd "${working_dir}/extracted"
@@ -134,4 +136,6 @@ if ! sha256sum -c "${working_dir}/${checksum_file}"; then
   die "extracted contents failed integrity check"
 fi
 
+msg "${GREEN}uploading ${working_dir}/extracted to ${destination}${NOFORMAT}"
 aws s3 cp "${working_dir}/extracted" "${destination}" --recursive
+msg "${GREEN}upload complete${NOFORMAT}"
