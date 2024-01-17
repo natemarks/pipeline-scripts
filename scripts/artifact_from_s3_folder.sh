@@ -87,6 +87,13 @@ parse_params() {
 
 parse_params "$@"
 setup_colors
+
+
+msg "${RED}Read parameters:${NOFORMAT}"
+msg "- source: ${source}"
+msg "- destination: ${destination}"
+msg "- release_id: ${release_id}"
+
 # set up working dir
 working_dir="${destination}/${release_id}_temp"
 if [[ -d "${working_dir}" ]]; then rm -rf "${working_dir}"; fi
