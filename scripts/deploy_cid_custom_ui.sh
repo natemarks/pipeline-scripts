@@ -163,7 +163,7 @@ if ! sha256sum -c "${working_dir}/${checksum_file}"; then
 fi
 
 msg "${GREEN}replacing impr[1-3].co with ${bucket}${NOFORMAT}"
-
+echo "${artifact}" > "${working_dir}/extracted/release.txt"
 find "${working_dir}/extracted" -type f -exec sed -i "s/impr[1-3]\.co/$bucket/g" {} +
 msg "${GREEN}uploading ${working_dir}/extracted to ${destination}${NOFORMAT}"
 aws s3 cp "${working_dir}/extracted" "${destination}" --recursive
