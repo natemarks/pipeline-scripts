@@ -166,5 +166,5 @@ msg "${GREEN}replacing impr[1-3].co with ${bucket}${NOFORMAT}"
 
 find "${working_dir}/extracted" -type f -exec sed -i "s/impr[1-3]\.co/$bucket/g" {} +
 msg "${GREEN}uploading ${working_dir}/extracted to ${destination}${NOFORMAT}"
-#aws s3 cp "${working_dir}/extracted" "${destination}" --recursive
+aws s3 cp "${working_dir}/extracted" "${destination}" --recursive
 msg "${GREEN}upload complete${NOFORMAT}"
