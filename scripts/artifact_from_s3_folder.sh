@@ -104,9 +104,9 @@ msg "${GREEN}downloading contents of ${source} to ${working_dir}${NOFORMAT}"
 # download s3 contents to a local folder
 aws s3 sync "${source}" "${working_dir}"
 
-msg "${GREEN}creating ${working_dir}/version.txt${NOFORMAT}"
-# add a version file to the contents
-echo "${release_id}" >"${working_dir}/version.txt"
+msg "${GREEN}creating ${working_dir}/release.txt${NOFORMAT}"
+# add a release file to the contents
+echo "${release_id}" >"${working_dir}/release.txt"
 
 # create a checksum file for the contents
 msg "${GREEN}creating checksum file: ${destination}/${release_id}.txt${NOFORMAT}"
